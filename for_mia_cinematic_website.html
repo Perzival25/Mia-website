@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For Mia ✦</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:DM Sans,sans-serif;background:#05050a;color:#fff;overflow-x:hidden}
+canvas{position:fixed;inset:0;z-index:-3}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 20% 20%,#ff4f8a22,transparent 32%),radial-gradient(circle at 80% 25%,#8d5cff22,transparent 30%),radial-gradient(circle at 50% 100%,#ff9c5c18,transparent 35%)}
+.cursor{position:fixed;width:260px;height:260px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#ff75ad20,transparent 65%);transform:translate(-50%,-50%);z-index:0}
+nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:min(92%,900px);z-index:20;padding:13px 20px;border:1px solid #ffffff18;border-radius:50px;background:#11111aaa;backdrop-filter:blur(18px);display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700}.links a{color:#aaa;text-decoration:none;margin-left:20px;font-size:13px}.links a:hover{color:#fff}
+.hero{height:100vh;min-height:650px;display:grid;place-items:center;text-align:center;padding:100px 20px;position:relative}
+.hero-inner{max-width:850px;animation:heroIn 1.5s cubic-bezier(.2,.8,.2,1)}
+@keyframes heroIn{from{opacity:0;transform:translateY(35px) scale(.97)}to{opacity:1;transform:none}}
+.eyebrow{display:inline-block;border:1px solid #ffffff18;background:#ffffff08;padding:9px 15px;border-radius:50px;color:#ddd;font-size:13px;margin-bottom:25px}
+h1{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(65px,12vw,140px);line-height:.84;letter-spacing:-6px}
+.grad{background:linear-gradient(90deg,#ff78aa,#ffd0df,#a98bff,#ff78aa);background-size:300%;-webkit-background-clip:text;color:transparent;animation:grad 7s linear infinite}
+@keyframes grad{to{background-position:300%}}
+.hero p{max-width:600px;margin:32px auto;color:#999;line-height:1.8}
+.btn{border:0;color:white;background:linear-gradient(135deg,#ff5c98,#875cff);padding:15px 24px;border-radius:50px;font-weight:600;cursor:pointer;box-shadow:0 12px 45px #ff5c9830;transition:.35s}
+.btn:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 18px 55px #ff5c9850}
+.scroll{position:absolute;bottom:25px;color:#777;font-size:12px;letter-spacing:2px}
+section{padding:120px 7%}.title{font:500 clamp(42px,7vw,78px)/1 "Playfair Display";margin-bottom:18px}.sub{color:#999;line-height:1.8;max-width:650px;margin-bottom:50px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1200px}
+.card{min-height:440px;padding:18px;border-radius:30px;border:1px solid #ffffff12;background:linear-gradient(145deg,#ffffff0d,#ffffff03);backdrop-filter:blur(15px);transform-style:preserve-3d;transition:transform .15s ease,border .3s;overflow:hidden}
+.card:hover{border-color:#ffffff30}.card img{width:100%;height:280px;object-fit:cover;border-radius:22px;display:block}.card h3{margin:20px 5px 8px;font-size:20px;transform:translateZ(35px)}.card p{color:#888;margin:0 5px;line-height:1.6;font-size:14px}
+.quote{text-align:center;max-width:900px;margin:auto;font:italic 500 clamp(32px,5vw,66px)/1.25 "Playfair Display";color:#eee}.small{text-align:center;color:#777;margin-top:25px}
+.letter-wrap{display:grid;place-items:center}.envelope{width:min(92vw,650px);padding:45px 35px;border-radius:30px;border:1px solid #ffffff18;background:#ffffff08;text-align:center;box-shadow:0 30px 100px #0008;position:relative}
+.envelope:before{content:"✦";position:absolute;top:18px;right:25px;color:#ff91b8}.letter{max-height:0;overflow:hidden;opacity:0;transition:1.3s ease}.letter.open{max-height:900px;opacity:1;margin-top:28px}.letter p{font:500 22px/1.8 "Playfair Display";color:#f5dce6}.typing{white-space:pre-line}
+.music{position:fixed;right:20px;bottom:20px;z-index:30;width:230px;padding:12px;border:1px solid #ffffff18;border-radius:20px;background:#111111d9;backdrop-filter:blur(16px);display:flex;align-items:center;gap:10px}
+.disc{width:42px;height:42px;border-radius:50%;background:conic-gradient(#ff78aa,#8b6cff,#ff78aa);display:grid;place-items:center;animation:spin 5s linear infinite}.disc:after{content:"♪";font-size:17px}.paused{animation-play-state:paused}@keyframes spin{to{transform:rotate(360deg)}}
+.music-info{min-width:0;flex:1}.music-info b{font-size:12px;display:block}.music-info span{font-size:10px;color:#888}.play{border:0;background:#fff;color:#111;width:34px;height:34px;border-radius:50%;cursor:pointer}
+audio{display:none}
+.final{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative}.final-box{max-width:800px}.final h2{font:500 clamp(55px,10vw,105px) "Playfair Display";line-height:.9}.final p{color:#999;margin:25px auto 35px;max-width:560px;line-height:1.8}.heart{font-size:55px;display:inline-block;animation:pulse 1.5s infinite}@keyframes pulse{50%{transform:scale(1.2)}}
+footer{padding:50px;text-align:center;color:#555;border-top:1px solid #ffffff0c}
+.reveal{opacity:0;transform:translateY(40px);transition:1s}.reveal.show{opacity:1;transform:none}
+@media(max-width:800px){.links{display:none}.cards{grid-template-columns:1fr}.card{min-height:auto}.music{left:50%;right:auto;transform:translateX(-50%);bottom:15px;width:min(90%,330px)}section{padding:90px 6%}h1{letter-spacing:-3px}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas><div class="cursor" id="cursor"></div>
+
+<nav><div class="logo">✦ For Mia</div><div class="links"><a href="#memories">Memories</a><a href="#letter">Letter</a><a href="#final">Surprise</a></div></nav>
+
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow">✦ A tiny website made for someone special</div>
+<h1>Hey,<br><span class="grad">Mia.</span></h1>
+<p>There are probably a million ways to say something nice. I thought I'd make an entire little universe instead.</p>
+<button class="btn" onclick="document.querySelector('#memories').scrollIntoView()">Open this little world ✨</button>
+</div><div class="scroll">SCROLL TO EXPLORE ↓</div>
+</header>
+
+<section id="memories" class="reveal">
+<h2 class="title">Little moments.</h2>
+<p class="sub">Replace these images and captions with your own memories later. The cards have a subtle 3D effect that follows your mouse.</p>
+<div class="cards">
+<div class="card tilt"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85"><h3>That smile ✨</h3><p>Some moments deserve to be remembered a little longer.</p></div>
+<div class="card tilt"><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85"><h3>Good energy</h3><p>The kind that makes an ordinary day feel different.</p></div>
+<div class="card tilt"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85"><h3>Main character ✦</h3><p>Some people simply have their own kind of sparkle.</p></div>
+</div>
+</section>
+
+<section class="reveal"><div class="quote">“The nicest memories are often the ones we didn't know would become memories.”</div><div class="small">— a little reminder ✦</div></section>
+
+<section id="letter" class="reveal">
+<h2 class="title">A letter.</h2><p class="sub">Tap the button. The message reveals itself one line at a time.</p>
+<div class="letter-wrap"><div class="envelope">
+<button class="btn" id="openLetter">Open the letter 💌</button>
+<div class="letter" id="letterText"><p class="typing"></p></div>
+</div></div>
+</section>
+
+<section id="final" class="final reveal">
+<div class="final-box"><div class="heart">✦</div><h2>One last<br><span class="grad">thing…</span></h2><p>Whatever you replace this with later, make it something that feels completely yours.</p><button class="btn" onclick="celebrate()">Reveal the surprise 🌹</button><div id="surprise" style="margin-top:25px;color:#ffbfd3;font:500 25px 'Playfair Display';min-height:35px"></div></div>
+</section>
+
+<footer>Made with ✦, imagination & a little bit of code.</footer>
+
+<div class="music"><div class="disc" id="disc"></div><div class="music-info"><b>Midnight Dreams</b><span>replace-song.mp3</span></div><button class="play" id="play">▶</button></div>
+<audio id="audio" loop><source src="replace-song.mp3" type="audio/mpeg"></audio>
+
+<script>
+// STAR FIELD
+const c=document.getElementById('stars'),x=c.getContext('2d');let W,H,stars=[];
+function resize(){W=c.width=innerWidth;H=c.height=innerHeight;stars=Array.from({length:Math.min(180,innerWidth/5)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.7+.2,a:Math.random(),s:Math.random()*.015+.003}))}
+resize();addEventListener('resize',resize);
+function draw(){x.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.s;if(s.a>1||s.a<.1)s.s*=-1;x.globalAlpha=s.a;x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fill()});requestAnimationFrame(draw)}draw();
+
+// MOUSE GLOW
+const cursor=document.getElementById('cursor');addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+
+// 3D CARDS
+document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('pointermove',e=>{let r=card.getBoundingClientRect(),rx=((e.clientY-r.top)/r.height-.5)*-10,ry=((e.clientX-r.left)/r.width-.5)*10;card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-5px)`});card.addEventListener('pointerleave',()=>card.style.transform='')});
+
+// SCROLL REVEALS
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+
+// LETTER
+const text=`Mia,
+
+I wanted to make you something a little different.
+
+Not just a message.
+Not just a picture.
+A tiny place on the internet that you can come back to whenever you want a reason to smile.
+
+You deserve beautiful moments, good memories, and plenty of reasons to be happy.
+
+So this little corner is yours. ✦`;
+document.getElementById('openLetter').onclick=()=>{
+document.getElementById('letterText').classList.add('open');
+document.getElementById('openLetter').textContent='Opened with ✦';
+let p=document.querySelector('.typing'),i=0;
+(function type(){if(i<text.length){p.textContent+=text[i++];setTimeout(type,text[i-1]=='\n'?250:28)}})();
+};
+
+// MUSIC
+const audio=document.getElementById('audio'),play=document.getElementById('play'),disc=document.getElementById('disc');
+play.onclick=async()=>{if(audio.paused){try{await audio.play();play.textContent='❚❚';disc.classList.remove('paused')}catch{alert('Add your MP3 and name it replace-song.mp3, then click play.')}}else{audio.pause();play.textContent='▶';disc.classList.add('paused')}};
+
+// FINAL
+function celebrate(){
+const el=document.getElementById('surprise');el.textContent='You are genuinely one of a kind. ✨';
+for(let i=0;i<45;i++){let s=document.createElement('span');s.textContent=['✦','✧','•','♡'][Math.floor(Math.random()*4)];s.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:100vh;font-size:${12+Math.random()*25}px;color:#ff9cbd;pointer-events:none;z-index:50`;document.body.appendChild(s);s.animate([{transform:'translateY(0) rotate(0deg)',opacity:1},{transform:`translateY(-${innerHeight+150}px) rotate(${Math.random()*720}deg)`,opacity:0}],{duration:1800+Math.random()*2200,easing:'ease-out'}).onfinish=()=>s.remove()}
+}
+</script>
+</body>
+</html>
